@@ -18,14 +18,14 @@ impl LanguageMap
         }
     }
 
-    pub fn replace(&mut self, s: &str) -> String {
-        let mut s = s.to_string();
-        for (k, v) in &self.map {
-            for c in v {
-                println!("Replacing '{}' in \"{}\" with '{}'", k, s, c);
-                s = s.replace(&k.to_string(), &c.to_string());
-            }
+    pub fn char_replace(&mut self, c: char) -> char{
+        match self.map.get(&c) {
+            Some(s) => s[0],
+            None => c,
         }
-        s.to_string()
+    }
+
+    pub fn replace(&mut self, s: &str) -> String {
+        s.chars().map(|c| self.char_replace(c)).collect()
     }
 }
