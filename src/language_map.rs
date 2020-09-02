@@ -14,7 +14,7 @@ impl LanguageMap
 
     pub fn add(&mut self, replacement_char: char, source_chars: &str) {
         for sc in source_chars.chars() {
-            let x = self.map.entry(sc).or_insert(Vec::new());
+            let x = self.map.entry(sc).or_insert_with(Vec::new);
             x.push(replacement_char);
         }
     }
