@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use rand::seq::SliceRandom;
 
 pub struct LanguageMap
 {
@@ -20,7 +21,7 @@ impl LanguageMap
 
     pub fn char_replace(&mut self, orig_char: char) -> char{
         match self.map.get(&orig_char) {
-            Some(rep_chars) => rep_chars[0],
+            Some(rep_chars) => *rep_chars.choose(&mut rand::thread_rng()).unwrap_or(&orig_char),
             None => orig_char,
         }
     }
