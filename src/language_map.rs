@@ -1,15 +1,15 @@
-use std::collections::HashMap;
 use rand::seq::SliceRandom;
+use std::collections::HashMap;
 
-pub struct LanguageMap
-{
-    pub map: HashMap<char, Vec<char>>
+pub struct LanguageMap {
+    pub map: HashMap<char, Vec<char>>,
 }
 
-impl LanguageMap
-{
+impl LanguageMap {
     pub fn new() -> Self {
-        LanguageMap { map: HashMap::new() }
+        LanguageMap {
+            map: HashMap::new(),
+        }
     }
 
     pub fn add(&mut self, replacement_char: char, source_chars: &str) {
@@ -19,9 +19,11 @@ impl LanguageMap
         }
     }
 
-    pub fn char_replace(&mut self, orig_char: char) -> char{
+    pub fn char_replace(&mut self, orig_char: char) -> char {
         match self.map.get(&orig_char) {
-            Some(rep_chars) => *rep_chars.choose(&mut rand::thread_rng()).unwrap_or(&orig_char),
+            Some(rep_chars) => *rep_chars
+                .choose(&mut rand::thread_rng())
+                .unwrap_or(&orig_char),
             None => orig_char,
         }
     }
