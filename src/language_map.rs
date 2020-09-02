@@ -18,10 +18,10 @@ impl LanguageMap
         }
     }
 
-    pub fn char_replace(&mut self, c: char) -> char{
-        match self.map.get(&c) {
-            Some(s) => s[0],
-            None => c,
+    pub fn char_replace(&mut self, orig_char: char) -> char{
+        match self.map.get(&orig_char) {
+            Some(rep_chars) => rep_chars[0],
+            None => orig_char,
         }
     }
 
